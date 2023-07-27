@@ -21,6 +21,7 @@ const emailURL = `${baseURL}/api/files/send`;
 
 const maxAllowedSize = 100 * 1024 * 1024; //100mb
 
+var url_file;
 
 browseBtn.addEventListener("click", () => {
   fileInput.click();
@@ -107,29 +108,29 @@ const uploadFile = () => {
   };
 
   // listen for response which will give the link
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState == XMLHttpRequest.DONE) {
-      onFileUploadSuccess(xhr.responseText);
+  xhr.open("POST", uploadURL, false);
+  xhr.onload = function () {
+    if (xhr.status == 200) {
+      var data = xhr.responseText;
+      var response = JSON.parse(data);
+      console.log(response);
+      onFileUploadSuccess(response);
     }
   };
-
-  xhr.open("POST", uploadURL);
   xhr.send(formData);
 };
 
 const onFileUploadSuccess = (res) => {
   fileInput.value = ""; // reset the input
-  status.innerText = "Uploaded";
-
+  status.innerText = "Uploading...";
   // remove the disabled attribute from form btn & make text send
   emailForm[2].removeAttribute("disabled");
   emailForm[2].innerText = "Send";
   progressContainer.style.display = "none"; // hide the box
 
-  const { file: url } = JSON.parse(res);
-  console.log(url);
+  console.log(res['file']);
+  fileURL.value = res['file'];
   sharingContainer.style.display = "block";
-  fileURL.value = url;
 };
 
 emailForm.addEventListener("submit", (e) => {

@@ -27,7 +27,9 @@ router.post('/', (req, res) => {
       uuid: uuidv4() //generates unique id for a file
     });
     const response = await file.save();
-    res.json({ file: `${process.env.APP_BASE_URL}/files/${response.uuid}` });
+    //console.log(`${process.env.APP_BASE_URL}/files/${response.uuid}`);
+    const resLink = `${process.env.APP_BASE_URL}/files/${response.uuid}`;
+    res.json({ file: resLink });
   });
 });
 
