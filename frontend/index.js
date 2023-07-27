@@ -109,11 +109,12 @@ const uploadFile = () => {
 
   // listen for response which will give the link
   xhr.open("POST", uploadURL, false);
-  xhr.onload = function () {
-    if (xhr.status == 200) {
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == 4 && xhr.status == 200) {
       var data = xhr.responseText;
       var response = JSON.parse(data);
       console.log(response);
+      showToast("File Uploaded Successfully!");
       onFileUploadSuccess(response);
     }
   };
@@ -126,7 +127,7 @@ const onFileUploadSuccess = (res) => {
   // remove the disabled attribute from form btn & make text send
   emailForm[2].removeAttribute("disabled");
   emailForm[2].innerText = "Send";
-  progressContainer.style.display = "none"; // hide the box
+  // progressContainer.style.display = "none"; // hide the box
 
   console.log(res['file']);
   fileURL.value = res['file'];
@@ -172,5 +173,5 @@ const showToast = (msg) => {
   toast.classList.add("show");
   toastTimer = setTimeout(() => {
     toast.classList.remove("show");
-  }, 2000);
+  }, 3000);
 };
