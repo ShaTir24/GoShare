@@ -1,0 +1,41 @@
+{
+  "name": "go-share",
+  "version": "1.0.1",
+  "main": "index.js",
+  "license": "MIT",
+  "engines": {
+    "node": "14.x"
+  },
+  "scripts": {
+    "dev": "nodemon server",
+    "serve": "node server",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.0",
+    "multer": "^1.4.2",
+    "nodemailer": "^6.4.11",
+    "uuid": "^8.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "description": "Rest api using Node, Express, Mongo.\r We will build rest api for a simple file sharing app.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShaTir24/GoShare.git"
+  },
+  "keywords": [
+    "file",
+    "sharing"
+  ],
+  "author": "Tirth Shah",
+  "bugs": {
+    "url": "https://github.com/ShaTir24/GoShare/issues"
+  },
+  "homepage": "https://github.com/ShaTir24/GoShare#readme"
+}
